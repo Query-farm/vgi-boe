@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "catalog": "boe",
+  "worker": [
+    ".venv/bin/vgi-boe-worker"
+  ],
+  "api_base_url": "https://www.bankofengland.co.uk/boeapps/database",
+  "key_required": false,
+  "checks": [
+    {
+      "name": "curated discovery",
+      "sql": "SELECT count(*) FROM boe.main.datasets()",
+      "rows": [
+        [
+          3
+        ]
+      ]
+    },
+    {
+      "name": "series metadata",
+      "sql": "SELECT series_code, title, frequency, unit_descriptor FROM boe.main.series(['IUDBEDR'], start_date := '2024-01-01', end_date := '2024-01-05')",
+      "rows": [
+        [
+          "IUDBEDR",
+          "Fixture £ rate",
+          "D",
+          "Sterling"
+        ]
+      ]
+    },
+    {
+      "name": "observations nulls and precision",
+      "sql": "SELECT period, value_text FROM boe.main.observations(['IUDBEDR'], start_date := '2024-01-01', end_date := '2024-01-05') ORDER BY period",
+      "rows": [
+        [
+          "2024-01-02",
+          "2.50"
+        ],
+        [
+          "2024-01-03",
+          null
+        ],
+        [
+          "2024-01-04",
+          "2.75"
+        ]
+      ]
+    },
+    {
+      "name": "provisional values",
+      "sql": "SELECT provisional_value_text FROM boe.main.observations(['IUDBEDR'], start_date := '2024-01-01', end_date := '2024-01-05', include_provisional := true, max_rows := 1)",
+      "rows": [
+        [
+          "2.80"
+        ]
+      ]
+    },
+    {
+      "name": "available history",
+      "sql": "SELECT count(*), sum(is_current::INTEGER)::BIGINT FROM boe.main.revisions(['LPMAUZI'], start_date := '2024-01-01', end_date := '2024-01-05', updated_since := '2024-01-01')",
+      "rows": [
+        [
+          6,
+          3
+        ]
+      ]
+    },
+    {
+      "name": "updated observations",
+      "sql": "SELECT period FROM boe.main.observations(['IUDBEDR'], start_date := '2024-01-01', end_date := '2024-01-05', updated_since := 'latest', updates_only := true)",
+      "rows": [
+        [
+          "2024-01-04"
+        ]
+      ]
+    },
+    {
+      "name": "new series discovery",
+      "sql": "SELECT count(*) FROM boe.main.new_series(start_date := '2024-01-01', end_date := '2024-01-05')",
+      "rows": [
+        [
+          2
+        ]
+      ]
+    },
+    {
+      "name": "output cap",
+      "sql": "SELECT count(*) FROM boe.main.observations(['IUDBEDR'], start_date := '2024-01-01', end_date := '2024-01-05', max_rows := 1)",
+      "rows": [
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "name": "empty range",
+      "sql": "SELECT count(*) FROM boe.main.observations(['IUDBEDR'], start_date := '2100-01-01', end_date := '2100-01-02')",
+      "rows": [
+        [
+          0
+        ]
+      ]
+    }
+  ],
+  "error_checks": [
+    {
+      "name": "malformed source value",
+      "sql": "SELECT * FROM boe.main.observations(['BADVALUE'], start_date := '2024-01-01', end_date := '2024-01-05')",
+      "message": "numeric"
+    },
+    {
+      "name": "missing source series",
+      "sql": "SELECT * FROM boe.main.observations(['MISSING'], start_date := '2024-01-01', end_date := '2024-01-05')",
+      "message": "missing"
+    },
+    {
+      "name": "unsafe XML",
+      "sql": "SELECT * FROM boe.main.observations(['UNSAFE'], start_date := '2024-01-01', end_date := '2024-01-05')",
+      "message": "unsafe XML"
+    },
+    {
+      "name": "invalid calendar date",
+      "sql": "SELECT * FROM boe.main.observations(['IUDBEDR'], start_date := '2024-02-30', end_date := '2024-03-01')",
+      "message": "YYYY-MM-DD"
+    },
+    {
+      "name": "duplicate codes",
+      "sql": "SELECT * FROM boe.main.observations(['IUDBEDR','iudbedr'], start_date := '2024-01-01', end_date := '2024-01-05')",
+      "message": "must not repeat"
+    }
+  ],
+  "live_checks": [
+    {
+      "name": "local discovery",
+      "sql": "SELECT count(*) FROM boe.main.datasets()",
+      "rows": [
+        [
+          3
+        ]
+      ]
+    },
+    {
+      "name": "live series",
+      "sql": "SELECT series_code, frequency FROM boe.main.series(['IUDBEDR'], start_date := '2024-01-01', end_date := '2024-01-05')",
+      "rows": [
+        [
+          "IUDBEDR",
+          "D"
+        ]
+      ]
+    },
+    {
+      "name": "live observations",
+      "sql": "SELECT count(*), min(value) FROM boe.main.observations(['IUDBEDR'], start_date := '2024-01-01', end_date := '2024-01-05')",
+      "rows": [
+        [
+          4,
+          5.25
+        ]
+      ]
+    },
+    {
+      "name": "live revisions",
+      "sql": "SELECT count(*) > 3 FROM boe.main.revisions(['LPMAUZI'], start_date := '2024-01-01', end_date := '2024-03-31', updated_since := '2024-01-01')",
+      "rows": [
+        [
+          true
+        ]
+      ]
+    },
+    {
+      "name": "live new series",
+      "sql": "SELECT count(*) >= 0 FROM boe.main.new_series(start_date := '2024-01-01', end_date := '2024-01-31')",
+      "rows": [
+        [
+          true
+        ]
+      ]
+    }
+  ]
+}

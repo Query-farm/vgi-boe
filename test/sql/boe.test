@@ -1,0 +1,99 @@
+# Official API contract: discovery, source values, errors and revision semantics.
+require vgi
+
+require-env BOE_WORKER
+
+statement ok
+LOAD json;
+
+statement ok
+ATTACH 'boe' (TYPE vgi, LOCATION '{BOE_WORKER}');
+
+# curated discovery
+query T
+SELECT count(*) FROM boe.main.datasets();
+----
+3
+
+# series metadata
+query TTTT
+SELECT series_code, title, frequency, unit_descriptor FROM boe.main.series(['IUDBEDR'], start_date := '2024-01-01', end_date := '2024-01-05');
+----
+IUDBEDR	Fixture £ rate	D	Sterling
+
+# observations nulls and precision
+query TT
+SELECT period, value_text FROM boe.main.observations(['IUDBEDR'], start_date := '2024-01-01', end_date := '2024-01-05') ORDER BY period;
+----
+2024-01-02	2.50
+2024-01-03	NULL
+2024-01-04	2.75
+
+# provisional values
+query T
+SELECT provisional_value_text FROM boe.main.observations(['IUDBEDR'], start_date := '2024-01-01', end_date := '2024-01-05', include_provisional := true, max_rows := 1);
+----
+2.80
+
+# available history
+query TT
+SELECT count(*), sum(is_current::INTEGER)::BIGINT FROM boe.main.revisions(['LPMAUZI'], start_date := '2024-01-01', end_date := '2024-01-05', updated_since := '2024-01-01');
+----
+6	3
+
+# updated observations
+query T
+SELECT period FROM boe.main.observations(['IUDBEDR'], start_date := '2024-01-01', end_date := '2024-01-05', updated_since := 'latest', updates_only := true);
+----
+2024-01-04
+
+# new series discovery
+query T
+SELECT count(*) FROM boe.main.new_series(start_date := '2024-01-01', end_date := '2024-01-05');
+----
+2
+
+# output cap
+query T
+SELECT count(*) FROM boe.main.observations(['IUDBEDR'], start_date := '2024-01-01', end_date := '2024-01-05', max_rows := 1);
+----
+1
+
+# empty range
+query T
+SELECT count(*) FROM boe.main.observations(['IUDBEDR'], start_date := '2100-01-01', end_date := '2100-01-02');
+----
+0
+
+# malformed source value
+statement error
+SELECT * FROM boe.main.observations(['BADVALUE'], start_date := '2024-01-01', end_date := '2024-01-05');
+----
+numeric
+
+# missing source series
+statement error
+SELECT * FROM boe.main.observations(['MISSING'], start_date := '2024-01-01', end_date := '2024-01-05');
+----
+missing
+
+# unsafe XML
+statement error
+SELECT * FROM boe.main.observations(['UNSAFE'], start_date := '2024-01-01', end_date := '2024-01-05');
+----
+unsafe XML
+
+# invalid calendar date
+statement error
+SELECT * FROM boe.main.observations(['IUDBEDR'], start_date := '2024-02-30', end_date := '2024-03-01');
+----
+YYYY-MM-DD
+
+# duplicate codes
+statement error
+SELECT * FROM boe.main.observations(['IUDBEDR','iudbedr'], start_date := '2024-01-01', end_date := '2024-01-05');
+----
+must not repeat
+
+statement ok
+DETACH boe;
