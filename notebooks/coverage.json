@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "catalogs": {
+    "released": {
+      "path": "coverage/catalog-release.json",
+      "sha256": "7b5509ce174643a4f6bb802734223907280bec80d37b10bd6ea64262afbf19ad",
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root",
+        "reviewed_at": "2026-11-14T23:17:50.540422+00:00",
+        "catalog_sha256": "7b5509ce174643a4f6bb802734223907280bec80d37b10bd6ea64262afbf19ad",
+        "notes": "All five public functions, no tables/views/COPY or excluded authenticated APIs. Actual release exports and complete source registration reviewed separately. Current source changes only example/task metadata; runtime receipt remains release revision."
+      }
+    },
+    "current": {
+      "path": "coverage/catalog-current.json",
+      "sha256": "946f639262ff845d1413dd3536f24d285786c137ce3b27195562e166cf05780d",
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root",
+        "reviewed_at": "2026-11-14T23:17:50.540422+00:00",
+        "catalog_sha256": "946f639262ff845d1413dd3536f24d285786c137ce3b27195562e166cf05780d",
+        "notes": "All five public functions, no tables/views/COPY or excluded authenticated APIs. Actual release exports and complete source registration reviewed separately. Current source changes only example/task metadata; runtime receipt remains release revision."
+      }
+    }
+  },
+  "notebooks": [
+    {
+      "path": "01_reconcile_bank_rate_changes.ipynb",
+      "sha256": "72091ea005262fa6ae161215594b71ddb5520aa1df9fe940f565d6bc86f1d98e",
+      "execution": {
+        "path": "coverage/run-01.json",
+        "sha256": "8cfe185e095f64aa244e0b11e29971ab7a60b758afb2a78000e65af93becedf6"
+      }
+    },
+    {
+      "path": "02_publication_time_changes_the_comparison.ipynb",
+      "sha256": "22a673eb164f64e581187c84422dec0dc445892093032f087236a8d6b2f45a9c",
+      "execution": {
+        "path": "coverage/run-02.json",
+        "sha256": "dfb4bb786621808fbf85a7505227b8d3d92a5b5e9208c2165e555463a7420b55"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "object": {
+        "schema": "main",
+        "name": "datasets"
+      },
+      "notebook": "01_reconcile_bank_rate_changes.ipynb",
+      "sql": [
+        {
+          "cell": "bf2e9845",
+          "reference": "boe.main.datasets"
+        }
+      ],
+      "narrative_cells": [
+        "2ad6c9cf"
+      ],
+      "result_cells": [
+        "bf2e9845"
+      ],
+      "interpretation_cells": [
+        "2ad6c9cf",
+        "343644ac"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root",
+        "reviewed_at": "2026-11-14T23:17:50.540422+00:00",
+        "notebook_sha256": "72091ea005262fa6ae161215594b71ddb5520aa1df9fe940f565d6bc86f1d98e",
+        "catalog_sha256": [
+          "7b5509ce174643a4f6bb802734223907280bec80d37b10bd6ea64262afbf19ad",
+          "946f639262ff845d1413dd3536f24d285786c137ce3b27195562e166cf05780d"
+        ],
+        "purpose": "Identify the Bank Rate series from the worker curated local index before requesting bounded windows.",
+        "finding": "The IUDBEDR lookup returns the curated Bank Rate entry used in the exact arithmetic story. This is local discovery, not a full live series search."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "observations"
+      },
+      "notebook": "01_reconcile_bank_rate_changes.ipynb",
+      "sql": [
+        {
+          "cell": "3f75e57f",
+          "reference": "boe.main.observations"
+        }
+      ],
+      "narrative_cells": [
+        "5c648226",
+        "0044a99e",
+        "8ce3a7ae"
+      ],
+      "result_cells": [
+        "f3b39cd2",
+        "343644ac",
+        "e3f85eea",
+        "10fc65c8",
+        "e830c279"
+      ],
+      "interpretation_cells": [
+        "343644ac",
+        "cb1ee0ef"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root",
+        "reviewed_at": "2026-11-14T23:17:50.540422+00:00",
+        "notebook_sha256": "72091ea005262fa6ae161215594b71ddb5520aa1df9fe940f565d6bc86f1d98e",
+        "catalog_sha256": [
+          "7b5509ce174643a4f6bb802734223907280bec80d37b10bd6ea64262afbf19ad",
+          "946f639262ff845d1413dd3536f24d285786c137ce3b27195562e166cf05780d"
+        ],
+        "purpose": "Reconcile exact decimal Bank Rate changes against prior-December anchor and selected-year endpoint.",
+        "finding": "Unchanged official XML yields two -25bp changes in2024,net-50bp. Moving to2023 yields five increases totaling175bp; prior-year anchor and quality/reconciliation checks remain enforced. Step guides and returned observations are distinguished from announcements."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "new_series"
+      },
+      "notebook": "02_publication_time_changes_the_comparison.ipynb",
+      "sql": [
+        {
+          "cell": "additions-fetch",
+          "reference": "boe.main.new_series"
+        }
+      ],
+      "narrative_cells": [
+        "discovery-story"
+      ],
+      "result_cells": [
+        "additions-result"
+      ],
+      "interpretation_cells": [
+        "additions-result"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root",
+        "reviewed_at": "2026-11-14T23:17:50.540422+00:00",
+        "notebook_sha256": "22a673eb164f64e581187c84422dec0dc445892093032f087236a8d6b2f45a9c",
+        "catalog_sha256": [
+          "7b5509ce174643a4f6bb802734223907280bec80d37b10bd6ea64262afbf19ad",
+          "946f639262ff845d1413dd3536f24d285786c137ce3b27195562e166cf05780d"
+        ],
+        "purpose": "Distinguish catalog-addition dates from earliest observation labels and choose a comparable frequency/unit.",
+        "finding": "Two synthetic addition entries have different frequency/unit metadata; dailySYNCOUNT starts2020 despite a2024addition window. SYNINDEX is the selected monthlyindex. No livecatalogcompleteness claimed."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "series"
+      },
+      "notebook": "02_publication_time_changes_the_comparison.ipynb",
+      "sql": [
+        {
+          "cell": "history",
+          "reference": "boe.main.series"
+        }
+      ],
+      "narrative_cells": [
+        "history-story"
+      ],
+      "result_cells": [
+        "history-result",
+        "checks-result"
+      ],
+      "interpretation_cells": [
+        "history-result",
+        "experiment"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root",
+        "reviewed_at": "2026-11-14T23:17:50.540422+00:00",
+        "notebook_sha256": "22a673eb164f64e581187c84422dec0dc445892093032f087236a8d6b2f45a9c",
+        "catalog_sha256": [
+          "7b5509ce174643a4f6bb802734223907280bec80d37b10bd6ea64262afbf19ad",
+          "946f639262ff845d1413dd3536f24d285786c137ce3b27195562e166cf05780d"
+        ],
+        "purpose": "Verify the chosen series metadata against the same bounded selectors used for observations and revisions.",
+        "finding": "One monthlyIndexpoints metadatarecord accompanies three periods; exact requestaudit shows the metadata/observation/revisioncalls use identical selectors. All sourceinputs remainfixedacrosscutoffexperiment."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "revisions"
+      },
+      "notebook": "02_publication_time_changes_the_comparison.ipynb",
+      "sql": [
+        {
+          "cell": "history",
+          "reference": "boe.main.revisions"
+        }
+      ],
+      "narrative_cells": [
+        "history-story",
+        "selection-story"
+      ],
+      "result_cells": [
+        "history-result",
+        "comparison-result",
+        "checks-result"
+      ],
+      "interpretation_cells": [
+        "comparison-result",
+        "experiment"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root",
+        "reviewed_at": "2026-11-14T23:17:50.540422+00:00",
+        "notebook_sha256": "22a673eb164f64e581187c84422dec0dc445892093032f087236a8d6b2f45a9c",
+        "catalog_sha256": [
+          "7b5509ce174643a4f6bb802734223907280bec80d37b10bd6ea64262afbf19ad",
+          "946f639262ff845d1413dd3536f24d285786c137ce3b27195562e166cf05780d"
+        ],
+        "purpose": "Select latest eligible ordinary publications within observation periods while retaining missing/provisional cases.",
+        "finding": "Six supplied rows contain threecurrentordinary,twoearlier,andoneprovisionalpublication. Marchcutoffknows2/3periods withnet0butgross4indexpoints; Aprilknows3/3withnet/gross0. Provisional31 ispreserved separatelyfromordinary30; missingperiodisnotzero; onlysuppliedarchiveisclaimed."
+      }
+    }
+  ]
+}

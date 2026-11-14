@@ -1,0 +1,397 @@
+{
+  "schema_version": 1,
+  "status": "met",
+  "meets_target": true,
+  "catalogs": {
+    "released": {
+      "catalog_status": "verified",
+      "revision": "f0f6a7e195273a157536e838be0efd5f3655e1e8",
+      "catalog_sha256": "7b5509ce174643a4f6bb802734223907280bec80d37b10bd6ea64262afbf19ad",
+      "collection_reconciled": true,
+      "denominator": 5,
+      "observed_objects": 5,
+      "required": 5,
+      "verified_count": 5,
+      "candidate_count": 0,
+      "fraction": 1.0,
+      "meets_target": true,
+      "exact_runtime_count": 5,
+      "runtime_revisions": [
+        "f0f6a7e195273a157536e838be0efd5f3655e1e8"
+      ],
+      "covered": [
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "datasets"
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "new_series"
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "observations"
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "revisions"
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "series"
+        }
+      ],
+      "uncovered": [],
+      "objects": [
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "datasets",
+          "kinds": [
+            "function"
+          ],
+          "signatures": [
+            "datasets(VARCHAR, BIGINT) -> None"
+          ],
+          "access": [
+            "read"
+          ],
+          "authentication": [
+            "none"
+          ]
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "new_series",
+          "kinds": [
+            "function"
+          ],
+          "signatures": [
+            "new_series(VARCHAR, BIGINT, VARCHAR) -> None"
+          ],
+          "access": [
+            "read"
+          ],
+          "authentication": [
+            "none"
+          ]
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "observations",
+          "kinds": [
+            "function"
+          ],
+          "signatures": [
+            "observations(VARCHAR[], BOOLEAN, VARCHAR, VARCHAR, BIGINT, BOOLEAN, VARCHAR) -> None"
+          ],
+          "access": [
+            "read"
+          ],
+          "authentication": [
+            "none"
+          ]
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "revisions",
+          "kinds": [
+            "function"
+          ],
+          "signatures": [
+            "revisions(VARCHAR[], BOOLEAN, VARCHAR, VARCHAR, BIGINT, BOOLEAN, VARCHAR) -> None"
+          ],
+          "access": [
+            "read"
+          ],
+          "authentication": [
+            "none"
+          ]
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "series",
+          "kinds": [
+            "function"
+          ],
+          "signatures": [
+            "series(VARCHAR[], BOOLEAN, VARCHAR, VARCHAR, BIGINT, BOOLEAN, VARCHAR) -> None"
+          ],
+          "access": [
+            "read"
+          ],
+          "authentication": [
+            "none"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    "current": {
+      "catalog_status": "verified",
+      "revision": "6f3a71aa6605563a28929bc470010b02b6e0b934",
+      "catalog_sha256": "946f639262ff845d1413dd3536f24d285786c137ce3b27195562e166cf05780d",
+      "collection_reconciled": false,
+      "denominator": 5,
+      "observed_objects": 5,
+      "required": 5,
+      "verified_count": 5,
+      "candidate_count": 0,
+      "fraction": 1.0,
+      "meets_target": true,
+      "exact_runtime_count": 0,
+      "runtime_revisions": [
+        "f0f6a7e195273a157536e838be0efd5f3655e1e8"
+      ],
+      "covered": [
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "datasets"
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "new_series"
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "observations"
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "revisions"
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "series"
+        }
+      ],
+      "uncovered": [],
+      "objects": [
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "datasets",
+          "kinds": [
+            "function"
+          ],
+          "signatures": [
+            "datasets(VARCHAR, BIGINT) -> None"
+          ],
+          "access": [
+            "read"
+          ],
+          "authentication": [
+            "none"
+          ]
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "new_series",
+          "kinds": [
+            "function"
+          ],
+          "signatures": [
+            "new_series(VARCHAR, BIGINT, VARCHAR) -> None"
+          ],
+          "access": [
+            "read"
+          ],
+          "authentication": [
+            "none"
+          ]
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "observations",
+          "kinds": [
+            "function"
+          ],
+          "signatures": [
+            "observations(VARCHAR[], BOOLEAN, VARCHAR, VARCHAR, BIGINT, BOOLEAN, VARCHAR) -> None"
+          ],
+          "access": [
+            "read"
+          ],
+          "authentication": [
+            "none"
+          ]
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "revisions",
+          "kinds": [
+            "function"
+          ],
+          "signatures": [
+            "revisions(VARCHAR[], BOOLEAN, VARCHAR, VARCHAR, BIGINT, BOOLEAN, VARCHAR) -> None"
+          ],
+          "access": [
+            "read"
+          ],
+          "authentication": [
+            "none"
+          ]
+        },
+        {
+          "schema": [
+            "main"
+          ],
+          "name": "series",
+          "kinds": [
+            "function"
+          ],
+          "signatures": [
+            "series(VARCHAR[], BOOLEAN, VARCHAR, VARCHAR, BIGINT, BOOLEAN, VARCHAR) -> None"
+          ],
+          "access": [
+            "read"
+          ],
+          "authentication": [
+            "none"
+          ]
+        }
+      ],
+      "issues": []
+    }
+  },
+  "interface_drift": {
+    "known": true,
+    "current_only": [],
+    "released_only": [],
+    "changed": []
+  },
+  "notebooks": {
+    "01_reconcile_bank_rate_changes.ipynb": {
+      "verified": true,
+      "issues": []
+    },
+    "02_publication_time_changes_the_comparison.ipynb": {
+      "verified": true,
+      "issues": []
+    }
+  },
+  "examples": [
+    {
+      "status": "verified",
+      "issues": [],
+      "verified_catalogs": [
+        "released",
+        "current"
+      ],
+      "object": {
+        "schema": [
+          "main"
+        ],
+        "name": "datasets"
+      },
+      "notebook": "01_reconcile_bank_rate_changes.ipynb",
+      "runtime_revision": "f0f6a7e195273a157536e838be0efd5f3655e1e8",
+      "runtime_catalog_sha256": "7b5509ce174643a4f6bb802734223907280bec80d37b10bd6ea64262afbf19ad"
+    },
+    {
+      "status": "verified",
+      "issues": [],
+      "verified_catalogs": [
+        "released",
+        "current"
+      ],
+      "object": {
+        "schema": [
+          "main"
+        ],
+        "name": "observations"
+      },
+      "notebook": "01_reconcile_bank_rate_changes.ipynb",
+      "runtime_revision": "f0f6a7e195273a157536e838be0efd5f3655e1e8",
+      "runtime_catalog_sha256": "7b5509ce174643a4f6bb802734223907280bec80d37b10bd6ea64262afbf19ad"
+    },
+    {
+      "status": "verified",
+      "issues": [],
+      "verified_catalogs": [
+        "released",
+        "current"
+      ],
+      "object": {
+        "schema": [
+          "main"
+        ],
+        "name": "new_series"
+      },
+      "notebook": "02_publication_time_changes_the_comparison.ipynb",
+      "runtime_revision": "f0f6a7e195273a157536e838be0efd5f3655e1e8",
+      "runtime_catalog_sha256": "7b5509ce174643a4f6bb802734223907280bec80d37b10bd6ea64262afbf19ad"
+    },
+    {
+      "status": "verified",
+      "issues": [],
+      "verified_catalogs": [
+        "released",
+        "current"
+      ],
+      "object": {
+        "schema": [
+          "main"
+        ],
+        "name": "series"
+      },
+      "notebook": "02_publication_time_changes_the_comparison.ipynb",
+      "runtime_revision": "f0f6a7e195273a157536e838be0efd5f3655e1e8",
+      "runtime_catalog_sha256": "7b5509ce174643a4f6bb802734223907280bec80d37b10bd6ea64262afbf19ad"
+    },
+    {
+      "status": "verified",
+      "issues": [],
+      "verified_catalogs": [
+        "released",
+        "current"
+      ],
+      "object": {
+        "schema": [
+          "main"
+        ],
+        "name": "revisions"
+      },
+      "notebook": "02_publication_time_changes_the_comparison.ipynb",
+      "runtime_revision": "f0f6a7e195273a157536e838be0efd5f3655e1e8",
+      "runtime_catalog_sha256": "7b5509ce174643a4f6bb802734223907280bec80d37b10bd6ea64262afbf19ad"
+    }
+  ],
+  "issues": []
+}

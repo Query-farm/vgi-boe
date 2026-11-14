@@ -1,0 +1,30 @@
+{
+  "query": "SELECT database_name,comment,tags FROM duckdb_databases() WHERE database_name='boe'",
+  "columns": [
+    "database_name",
+    "comment",
+    "tags"
+  ],
+  "rows": [
+    [
+      "boe",
+      "# vgi-boe\n\nDiscover Bank of England statistical series and retrieve observations with original periods, units and source metadata. The upstream public data service needs no API key. SQL NULL arguments are rejected; missing source values become NULL. Use function arguments for source filtering; SQL WHERE filters are local. HTTP worker access can require a bearer token.\n\nQueries use bounded HTTP responses and retries. Credentials stay out of continuation state. See README.md for deployment and operational limits.",
+      {
+        "vgi.agent_test_tasks": "[{\"name\": \"datasets\", \"prompt\": \"Using boe.main.datasets, discover boe series examples. Use the arguments in this example and return the same columns: SELECT series_code, title FROM boe.main.datasets(query := 'rate') ORDER BY series_code\"}, {\"name\": \"series\", \"prompt\": \"Using boe.main.series, inspect boe series metadata. Use the arguments in this example and return the same columns: SELECT series_code, title, frequency FROM boe.main.series(['IUDBEDR'], start_date := '2024-01-02', end_date := '2024-01-05') ORDER BY series_code\"}, {\"name\": \"observations\", \"prompt\": \"Using boe.main.observations, read boe observations. Use the arguments in this example and return the same columns: SELECT period, value FROM boe.main.observations(['IUDBEDR'], start_date := '2024-01-02', end_date := '2024-01-05') ORDER BY period\"}, {\"name\": \"revisions\", \"prompt\": \"Using boe.main.revisions, read boe publication history. Use the arguments in this example and return the same columns: SELECT period, published_at, value FROM boe.main.revisions(['LPMAUZI'], start_date := '2024-01-01', end_date := '2024-03-31', updated_since := '2024-01-01') ORDER BY period, published_at\"}, {\"name\": \"new_series\", \"prompt\": \"Using boe.main.new_series, discover newly added boe series. Use the arguments in this example and return the same columns: SELECT series_code, title FROM boe.main.new_series(start_date := '2024-01-01', end_date := '2024-01-31') ORDER BY series_code\"}]",
+        "vgi.author": "Query.Farm",
+        "vgi.copyright": "Copyright 2026 Query.Farm contributors",
+        "vgi.doc_llm": "Discover Bank of England statistical series and retrieve observations with original periods, units and source metadata. The upstream public data service needs no API key. SQL NULL arguments are rejected; missing source values become NULL. Use function arguments for source filtering; SQL WHERE filters are local. HTTP worker access can require a bearer token.",
+        "vgi.doc_md": "# vgi-boe\n\nDiscover Bank of England statistical series and retrieve observations with original periods, units and source metadata. The upstream public data service needs no API key. SQL NULL arguments are rejected; missing source values become NULL. Use function arguments for source filtering; SQL WHERE filters are local. HTTP worker access can require a bearer token.\n\nQueries use bounded HTTP responses and retries. Credentials stay out of continuation state. See README.md for deployment and operational limits.",
+        "vgi.executable_examples": "[{\"name\": \"discover_datasets\", \"description\": \"Discover available functions without credentials or API requests\", \"sql\": \"SELECT function_name FROM duckdb_functions() WHERE database_name = 'boe' AND function_name = 'datasets' ORDER BY function_name\", \"expected_result\": [{\"function_name\": \"datasets\"}]}]",
+        "vgi.icon_url": "https://query.farm/media-kit/products/vgi/vgi-logo.png",
+        "vgi.keywords": "[\"boe\", \"economics\", \"public data\", \"time series\", \"duckdb\", \"sql\"]",
+        "vgi.license": "0BSD",
+        "vgi.source_url": "https://github.com/Query-farm/vgi-boe",
+        "vgi.subtitle": "Discover Bank of England statistical series and retrieve observations with original periods, units and source metadata.",
+        "vgi.support_contact": "https://github.com/Query-farm/vgi-boe/issues",
+        "vgi.support_policy_url": "https://github.com/Query-farm/vgi-boe/blob/main/README.md",
+        "vgi.title": "BOE Statistics"
+      }
+    ]
+  ]
+}

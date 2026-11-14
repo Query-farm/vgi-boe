@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "repository": "Query-farm/vgi-boe",
+  "revision": "6f3a71aa6605563a28929bc470010b02b6e0b934",
+  "captured_at": "2026-11-14T23:13:16.138423+00:00",
+  "default_schema": "main",
+  "scope": "all_public_functions_and_tables",
+  "complete": true,
+  "objects": [
+    {
+      "schema": "main",
+      "name": "datasets",
+      "kind": "function",
+      "signatures": [
+        "datasets(VARCHAR, BIGINT) -> None"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "new_series",
+      "kind": "function",
+      "signatures": [
+        "new_series(VARCHAR, BIGINT, VARCHAR) -> None"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "observations",
+      "kind": "function",
+      "signatures": [
+        "observations(VARCHAR[], BOOLEAN, VARCHAR, VARCHAR, BIGINT, BOOLEAN, VARCHAR) -> None"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "revisions",
+      "kind": "function",
+      "signatures": [
+        "revisions(VARCHAR[], BOOLEAN, VARCHAR, VARCHAR, BIGINT, BOOLEAN, VARCHAR) -> None"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "series",
+      "kind": "function",
+      "signatures": [
+        "series(VARCHAR[], BOOLEAN, VARCHAR, VARCHAR, BIGINT, BOOLEAN, VARCHAR) -> None"
+      ],
+      "authentication": "none",
+      "access": "read"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "coverage/current-source-review.json",
+      "sha256": "582d3a467746829274532da52274522adf6645f91c501b8645cf085f9a68298a",
+      "description": "Complete current-source registration and semantic compatibility review"
+    },
+    {
+      "path": "coverage/release-to-current.patch",
+      "sha256": "c8b78f74e97b262d7efe57f6cabb7250bdba374c997c1498d6021013739eba4b",
+      "description": "Exact source/dependency delta from executed release to reviewed current revision"
+    }
+  ]
+}

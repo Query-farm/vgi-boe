@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "repository": "Query-farm/vgi-boe",
+  "revision": "f0f6a7e195273a157536e838be0efd5f3655e1e8",
+  "captured_at": "2026-11-14T23:00:43.519509+00:00",
+  "default_schema": "main",
+  "scope": "all_public_functions_and_tables",
+  "complete": true,
+  "objects": [
+    {
+      "schema": "main",
+      "name": "datasets",
+      "kind": "function",
+      "signatures": [
+        "datasets(VARCHAR, BIGINT) -> None"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "new_series",
+      "kind": "function",
+      "signatures": [
+        "new_series(VARCHAR, BIGINT, VARCHAR) -> None"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "observations",
+      "kind": "function",
+      "signatures": [
+        "observations(VARCHAR[], BOOLEAN, VARCHAR, VARCHAR, BIGINT, BOOLEAN, VARCHAR) -> None"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "revisions",
+      "kind": "function",
+      "signatures": [
+        "revisions(VARCHAR[], BOOLEAN, VARCHAR, VARCHAR, BIGINT, BOOLEAN, VARCHAR) -> None"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "series",
+      "kind": "function",
+      "signatures": [
+        "series(VARCHAR[], BOOLEAN, VARCHAR, VARCHAR, BIGINT, BOOLEAN, VARCHAR) -> None"
+      ],
+      "authentication": "none",
+      "access": "read"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "coverage/functions.json",
+      "sha256": "103b8c8f41b99df9fcbd7bf65e583547d35fa6cbba694a83c1e8f7398d5d4ada",
+      "description": "Complete real released runtime functions export"
+    },
+    {
+      "path": "coverage/tables.json",
+      "sha256": "929ba43e4823a374b4a24edc2bc191f3c9e92bbf353ccec07ac1da2e54359fe3",
+      "description": "Complete real released runtime tables export"
+    },
+    {
+      "path": "coverage/views.json",
+      "sha256": "db91a15d8e05418df0a2b70e7445efc438ebf0fdc6c411c9ccbd95f33742a675",
+      "description": "Complete real released runtime views export"
+    }
+  ]
+}

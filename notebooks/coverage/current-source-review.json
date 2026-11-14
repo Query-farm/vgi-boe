@@ -1,0 +1,19 @@
+{
+  "current_revision": "6f3a71aa6605563a28929bc470010b02b6e0b934",
+  "release_revision": "f0f6a7e195273a157536e838be0efd5f3655e1e8",
+  "source_sha256": {
+    "src/boe_worker/__init__.py": "17541bea6d9f9481d5005a1a82a4c0137009e70c99d813f19bf779bfc1303ed1",
+    "src/boe_worker/api.py": "d942c5e7f01bf4472ed3924506a23dadffb1ec1c2226e63c93961ca14eb5b4ee",
+    "src/boe_worker/auth.py": "3642cf7bcbbc49064adee2df80c6790d2736c3b4402ac12ab4597efd2bb2640f",
+    "src/boe_worker/functions.py": "bacf7a214ecbc876d01c06ac275854fba7d90ab17b2765463acc5fa37f261f79",
+    "src/boe_worker/meta.py": "b1903ce18833db0680d40580d719c742cd4076dcc662e9fa5482de819750f039",
+    "src/boe_worker/transport.py": "1ac8cf4e487891d612e045ff647816a7f8baab7dedfa42f05444ed70944d0172",
+    "src/boe_worker/values.py": "f036977f5a83402e1747eda12c294dfda75f6f9fab06b1da25a3bc3c601e19d1",
+    "src/boe_worker/worker.py": "e20b64909cfc94fb1124b0ba77e3d9f820704ed689c956b013a139ed92dd03a8",
+    "src/boe_worker/xml.py": "c7c33e63ff6150537f8c9d6bde7562f1fc2911404eed8c8ec546395314b9a98c"
+  },
+  "full_public_registration": "worker.py: BoeWorker.catalog has only main schema, functions=FUNCTIONS. functions.py registers Datasets,Series,Observations,Revisions,NewSeries; no relations or COPY handlers. No credentials required. All count.",
+  "source_diff_review": "Only FunctionExample import/composed example and agent task metadata added. All signatures, output schemas, authentication, request logic, parser, registrations and dependencies unchanged. Current interface review is compatible evidence, not exact-current runtime execution.",
+  "reviewer": "Codex /root",
+  "reviewed_at": "2026-11-14T23:13:16.138423+00:00"
+}

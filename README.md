@@ -1,5 +1,7 @@
 # vgi-boe
 
+[Executed SQL notebooks](notebooks/README.md): reconcile Bank Rate changes and explore publication-time revisions, with SVG charts and Open in Colab links.
+
 Python VGI worker for Bank of England statistics. It exposes five typed SQL
 functions with discovery metadata, original source values and HTTP bearer authentication.
 

@@ -1,18 +1,19 @@
 [project]
 name = "vgi-boe-notebooks"
 version = "0.1.0"
-description = "SQL-first, executable examples for vgi-boe"
-requires-python = ">=3.13,<3.15"
-dependencies = [
-    "certifi>=2025.1,<2027",
-    "haybarn==2.0.0rc11",
-    "ipykernel>=6.30,<8",
-    "jupysql>=0.11,<0.12",
-    "matplotlib>=3.10,<4",
-    "nbclient>=0.10,<0.11",
-    "nbformat>=5.10,<6",
-    "numpy>=2.2,<3",
-    "pandas>=2.2,<3",
-    "seaborn>=0.13.2,<0.14",
-    "toml>=0.10,<0.11",
-]
+description = "Released BOE observation and publication-time SQL examples"
+requires-python = ">=3.12,<3.15"
+dependencies = ["vgi-example-notebooks[runner]"]
+[tool.uv.sources]
+vgi-example-notebooks = { git = "https://github.com/Query-farm/vgi-example-notebooks", tag = "v0.3.32" }
+[tool.ruff]
+line-length = 120
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E501"]
+[tool.ruff.lint.per-file-ignores]
+# JupySQL assigns result variables inside SQL magic cells.
+"*.ipynb" = ["F821"]
+[tool.ruff.lint.isort]
+# Companions are imported from the shared package's verified cache in Colab.
+known-third-party = ["recorded_api"]

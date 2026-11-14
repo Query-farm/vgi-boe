@@ -1,0 +1,255 @@
+{
+  "query": "SELECT * FROM duckdb_functions() WHERE database_name='boe' ORDER BY schema_name,function_name",
+  "columns": [
+    "database_name",
+    "database_oid",
+    "schema_name",
+    "function_name",
+    "alias_of",
+    "function_type",
+    "description",
+    "comment",
+    "tags",
+    "return_type",
+    "parameters",
+    "parameter_types",
+    "varargs",
+    "macro_definition",
+    "has_side_effects",
+    "internal",
+    "extension_name",
+    "function_oid",
+    "examples",
+    "stability",
+    "categories"
+  ],
+  "rows": [
+    [
+      "boe",
+      "22592",
+      "main",
+      "datasets",
+      null,
+      "table",
+      "Search a small curated list of official series. This is not the complete BoE catalog; use the linked interactive database for all codes. No network request is made.",
+      null,
+      {
+        "vgi.category": "api",
+        "vgi.doc_llm": "Search a small curated list of official series. This is not the complete BoE catalog; use the linked interactive database for all codes. No network request is made. Returns typed columns series_code, title, frequency, source_url. The public upstream API needs no key. Amounts retain source scales; original source strings remain available in JSON. NULL arguments are rejected. Missing optional response fields return NULL. Upstream errors fail the query; SQL WHERE filters are local.",
+        "vgi.doc_md": "## datasets\n\nSearch a small curated list of official series. This is not the complete BoE catalog; use the linked interactive database for all codes. No network request is made. Returns typed columns series_code, title, frequency, source_url. The public upstream API needs no key. Amounts retain source scales; original source strings remain available in JSON. NULL arguments are rejected. Missing optional response fields return NULL. Upstream errors fail the query; SQL WHERE filters are local.",
+        "vgi.example_queries": "[{\"description\": \"Discover BoE series examples\", \"sql\": \"SELECT series_code, title FROM boe.main.datasets(query := 'rate') ORDER BY series_code\"}]",
+        "vgi.keywords": "[\"boe\", \"economics\", \"time series\", \"datasets\"]",
+        "vgi.result_columns_schema": "[{\"name\": \"series_code\", \"type\": \"VARCHAR\", \"description\": \"Example official series code; discovery is curated, not exhaustive.\"}, {\"name\": \"title\", \"type\": \"VARCHAR\", \"description\": \"Short curated description.\"}, {\"name\": \"frequency\", \"type\": \"VARCHAR\", \"description\": \"Source frequency code.\"}, {\"name\": \"source_url\", \"type\": \"VARCHAR\", \"description\": \"Official documentation and interactive catalog link.\"}]",
+        "vgi.title": "Discover BoE series examples"
+      },
+      null,
+      [
+        "query",
+        "max_rows"
+      ],
+      [
+        "VARCHAR",
+        "BIGINT"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22596,
+      [
+        "SELECT series_code, title FROM boe.main.datasets(query := 'rate') ORDER BY series_code"
+      ],
+      null,
+      []
+    ],
+    [
+      "boe",
+      "22592",
+      "main",
+      "new_series",
+      null,
+      "table",
+      "Use the official SeriesCodes=all mode to list series added within the required start_date/end_date window. This discovers additions, not every existing series and not observations. Both dates are named arguments.",
+      null,
+      {
+        "vgi.category": "api",
+        "vgi.doc_llm": "Use the official SeriesCodes=all mode to list series added within the required start_date/end_date window. This discovers additions, not every existing series and not observations. Both dates are named arguments. Returns typed columns series_code, title, description, frequency, frequency_name, unit_descriptor, first_observation, last_observation, categories_json, metadata_json. The public upstream API needs no key. Amounts retain source scales; original source strings remain available in JSON. NULL arguments are rejected. Missing optional response fields return NULL. Upstream errors fail the query; SQL WHERE filters are local.",
+        "vgi.doc_md": "## new_series\n\nUse the official SeriesCodes=all mode to list series added within the required start_date/end_date window. This discovers additions, not every existing series and not observations. Both dates are named arguments. Returns typed columns series_code, title, description, frequency, frequency_name, unit_descriptor, first_observation, last_observation, categories_json, metadata_json. The public upstream API needs no key. Amounts retain source scales; original source strings remain available in JSON. NULL arguments are rejected. Missing optional response fields return NULL. Upstream errors fail the query; SQL WHERE filters are local.",
+        "vgi.example_queries": "[{\"description\": \"Discover newly added BoE series\", \"sql\": \"SELECT series_code, title FROM boe.main.new_series(start_date := '2024-01-01', end_date := '2024-01-31') ORDER BY series_code\"}]",
+        "vgi.keywords": "[\"boe\", \"economics\", \"time series\", \"new_series\"]",
+        "vgi.result_columns_schema": "[{\"name\": \"series_code\", \"type\": \"VARCHAR\", \"description\": \"BoE series identifier.\"}, {\"name\": \"title\", \"type\": \"VARCHAR\", \"description\": \"Official series description.\"}, {\"name\": \"description\", \"type\": \"VARCHAR\", \"description\": \"Concatenated source category descriptions.\"}, {\"name\": \"frequency\", \"type\": \"VARCHAR\", \"description\": \"Source frequency code.\"}, {\"name\": \"frequency_name\", \"type\": \"VARCHAR\", \"description\": \"Source frequency label.\"}, {\"name\": \"unit_descriptor\", \"type\": \"VARCHAR\", \"description\": \"OUTPUT IN category when provided; consult metadata for scale and conventions.\"}, {\"name\": \"first_observation\", \"type\": \"VARCHAR\", \"description\": \"First recorded source period.\"}, {\"name\": \"last_observation\", \"type\": \"VARCHAR\", \"description\": \"Last recorded source period.\"}, {\"name\": \"categories_json\", \"type\": \"VARCHAR\", \"description\": \"All source categories, codes and labels.\"}, {\"name\": \"metadata_json\", \"type\": \"VARCHAR\", \"description\": \"Source metadata hierarchy, including notes and definition links.\"}]",
+        "vgi.title": "Discover newly added BoE series"
+      },
+      null,
+      [
+        "start_date",
+        "max_rows",
+        "end_date"
+      ],
+      [
+        "VARCHAR",
+        "BIGINT",
+        "VARCHAR"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22597,
+      [
+        "SELECT series_code, title FROM boe.main.new_series(start_date := '2024-01-01', end_date := '2024-01-31') ORDER BY series_code"
+      ],
+      null,
+      []
+    ],
+    [
+      "boe",
+      "22592",
+      "main",
+      "observations",
+      null,
+      "table",
+      "Retrieve current observations in published units with exact numeric text, footnotes and publication timestamps. Provisional values occupy separate columns. Source timestamps have no inferred timezone. series_codes is positional; dates and controls are named.",
+      null,
+      {
+        "vgi.category": "api",
+        "vgi.doc_llm": "Retrieve current observations in published units with exact numeric text, footnotes and publication timestamps. Provisional values occupy separate columns. Source timestamps have no inferred timezone. series_codes is positional; dates and controls are named. Returns typed columns series_code, title, description, frequency, frequency_name, unit_descriptor, first_observation, last_observation, categories_json, metadata_json, period, observation_date, last_updated, confidentiality, details_json, value, value_text, provisional_value, provisional_value_text. The public upstream API needs no key. Amounts retain source scales; original source strings remain available in JSON. NULL arguments are rejected. Missing optional response fields return NULL. Upstream errors fail the query; SQL WHERE filters are local.",
+        "vgi.doc_md": "## observations\n\nRetrieve current observations in published units with exact numeric text, footnotes and publication timestamps. Provisional values occupy separate columns. Source timestamps have no inferred timezone. series_codes is positional; dates and controls are named. Returns typed columns series_code, title, description, frequency, frequency_name, unit_descriptor, first_observation, last_observation, categories_json, metadata_json, period, observation_date, last_updated, confidentiality, details_json, value, value_text, provisional_value, provisional_value_text. The public upstream API needs no key. Amounts retain source scales; original source strings remain available in JSON. NULL arguments are rejected. Missing optional response fields return NULL. Upstream errors fail the query; SQL WHERE filters are local.",
+        "vgi.example_queries": "[{\"description\": \"Read BoE observations\", \"sql\": \"SELECT period, value FROM boe.main.observations(['IUDBEDR'], start_date := '2024-01-02', end_date := '2024-01-05') ORDER BY period\"}]",
+        "vgi.keywords": "[\"boe\", \"economics\", \"time series\", \"observations\"]",
+        "vgi.result_columns_schema": "[{\"name\": \"series_code\", \"type\": \"VARCHAR\", \"description\": \"BoE series identifier.\"}, {\"name\": \"title\", \"type\": \"VARCHAR\", \"description\": \"Official series description.\"}, {\"name\": \"description\", \"type\": \"VARCHAR\", \"description\": \"Concatenated source category descriptions.\"}, {\"name\": \"frequency\", \"type\": \"VARCHAR\", \"description\": \"Source frequency code.\"}, {\"name\": \"frequency_name\", \"type\": \"VARCHAR\", \"description\": \"Source frequency label.\"}, {\"name\": \"unit_descriptor\", \"type\": \"VARCHAR\", \"description\": \"OUTPUT IN category when provided; consult metadata for scale and conventions.\"}, {\"name\": \"first_observation\", \"type\": \"VARCHAR\", \"description\": \"First recorded source period.\"}, {\"name\": \"last_observation\", \"type\": \"VARCHAR\", \"description\": \"Last recorded source period.\"}, {\"name\": \"categories_json\", \"type\": \"VARCHAR\", \"description\": \"All source categories, codes and labels.\"}, {\"name\": \"metadata_json\", \"type\": \"VARCHAR\", \"description\": \"Source metadata hierarchy, including notes and definition links.\"}, {\"name\": \"period\", \"type\": \"VARCHAR\", \"description\": \"Original observation period.\"}, {\"name\": \"observation_date\", \"type\": \"DATE\", \"description\": \"Calendar date assigned by the source to the period.\"}, {\"name\": \"last_updated\", \"type\": \"VARCHAR\", \"description\": \"Source publication timestamp; no timezone is inferred.\"}, {\"name\": \"confidentiality\", \"type\": \"VARCHAR\", \"description\": \"Original confidentiality flag.\"}, {\"name\": \"details_json\", \"type\": \"VARCHAR\", \"description\": \"Observation attributes, footnotes and available revision hierarchy.\"}, {\"name\": \"value\", \"type\": \"DOUBLE\", \"description\": \"Official value in original units; NULL when absent.\"}, {\"name\": \"value_text\", \"type\": \"VARCHAR\", \"description\": \"Exact original official numeric text.\"}, {\"name\": \"provisional_value\", \"type\": \"DOUBLE\", \"description\": \"Separately reported provisional value when requested.\"}, {\"name\": \"provisional_value_text\", \"type\": \"VARCHAR\", \"description\": \"Exact provisional numeric text.\"}]",
+        "vgi.title": "Read BoE observations"
+      },
+      null,
+      [
+        "series_codes",
+        "updates_only",
+        "end_date",
+        "start_date",
+        "max_rows",
+        "include_provisional",
+        "updated_since"
+      ],
+      [
+        "VARCHAR[]",
+        "BOOLEAN",
+        "VARCHAR",
+        "VARCHAR",
+        "BIGINT",
+        "BOOLEAN",
+        "VARCHAR"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22598,
+      [
+        "SELECT period, value FROM boe.main.observations(['IUDBEDR'], start_date := '2024-01-02', end_date := '2024-01-05') ORDER BY period"
+      ],
+      null,
+      []
+    ],
+    [
+      "boe",
+      "22592",
+      "main",
+      "revisions",
+      null,
+      "table",
+      "Flatten the revision entries returned by the XML service and include the current release once. Set updated_since to a historical baseline to request earlier revisions; empty uses the source's previous-release comparison. Coverage depends on the source and is not a complete ALFRED-style archive. series_codes is positional; dates and controls are named.",
+      null,
+      {
+        "vgi.category": "api",
+        "vgi.doc_llm": "Flatten the revision entries returned by the XML service and include the current release once. Set updated_since to a historical baseline to request earlier revisions; empty uses the source's previous-release comparison. Coverage depends on the source and is not a complete ALFRED-style archive. series_codes is positional; dates and controls are named. Returns typed columns series_code, title, description, frequency, frequency_name, unit_descriptor, first_observation, last_observation, categories_json, metadata_json, period, observation_date, last_updated, confidentiality, details_json, published_at, value, value_text, is_current, is_provisional. The public upstream API needs no key. Amounts retain source scales; original source strings remain available in JSON. NULL arguments are rejected. Missing optional response fields return NULL. Upstream errors fail the query; SQL WHERE filters are local.",
+        "vgi.doc_md": "## revisions\n\nFlatten the revision entries returned by the XML service and include the current release once. Set updated_since to a historical baseline to request earlier revisions; empty uses the source's previous-release comparison. Coverage depends on the source and is not a complete ALFRED-style archive. series_codes is positional; dates and controls are named. Returns typed columns series_code, title, description, frequency, frequency_name, unit_descriptor, first_observation, last_observation, categories_json, metadata_json, period, observation_date, last_updated, confidentiality, details_json, published_at, value, value_text, is_current, is_provisional. The public upstream API needs no key. Amounts retain source scales; original source strings remain available in JSON. NULL arguments are rejected. Missing optional response fields return NULL. Upstream errors fail the query; SQL WHERE filters are local.",
+        "vgi.example_queries": "[{\"description\": \"Read BoE publication history\", \"sql\": \"SELECT period, published_at, value FROM boe.main.revisions(['LPMAUZI'], start_date := '2024-01-01', end_date := '2024-03-31', updated_since := '2024-01-01') ORDER BY period, published_at\"}]",
+        "vgi.keywords": "[\"boe\", \"economics\", \"time series\", \"revisions\"]",
+        "vgi.result_columns_schema": "[{\"name\": \"series_code\", \"type\": \"VARCHAR\", \"description\": \"BoE series identifier.\"}, {\"name\": \"title\", \"type\": \"VARCHAR\", \"description\": \"Official series description.\"}, {\"name\": \"description\", \"type\": \"VARCHAR\", \"description\": \"Concatenated source category descriptions.\"}, {\"name\": \"frequency\", \"type\": \"VARCHAR\", \"description\": \"Source frequency code.\"}, {\"name\": \"frequency_name\", \"type\": \"VARCHAR\", \"description\": \"Source frequency label.\"}, {\"name\": \"unit_descriptor\", \"type\": \"VARCHAR\", \"description\": \"OUTPUT IN category when provided; consult metadata for scale and conventions.\"}, {\"name\": \"first_observation\", \"type\": \"VARCHAR\", \"description\": \"First recorded source period.\"}, {\"name\": \"last_observation\", \"type\": \"VARCHAR\", \"description\": \"Last recorded source period.\"}, {\"name\": \"categories_json\", \"type\": \"VARCHAR\", \"description\": \"All source categories, codes and labels.\"}, {\"name\": \"metadata_json\", \"type\": \"VARCHAR\", \"description\": \"Source metadata hierarchy, including notes and definition links.\"}, {\"name\": \"period\", \"type\": \"VARCHAR\", \"description\": \"Original observation period.\"}, {\"name\": \"observation_date\", \"type\": \"DATE\", \"description\": \"Calendar date assigned by the source to the period.\"}, {\"name\": \"last_updated\", \"type\": \"VARCHAR\", \"description\": \"Source publication timestamp; no timezone is inferred.\"}, {\"name\": \"confidentiality\", \"type\": \"VARCHAR\", \"description\": \"Original confidentiality flag.\"}, {\"name\": \"details_json\", \"type\": \"VARCHAR\", \"description\": \"Observation attributes, footnotes and available revision hierarchy.\"}, {\"name\": \"published_at\", \"type\": \"VARCHAR\", \"description\": \"Source release timestamp, without an inferred timezone.\"}, {\"name\": \"value\", \"type\": \"DOUBLE\", \"description\": \"Published value in original units.\"}, {\"name\": \"value_text\", \"type\": \"VARCHAR\", \"description\": \"Exact original published numeric text.\"}, {\"name\": \"is_current\", \"type\": \"BOOLEAN\", \"description\": \"Whether the release matches the returned current observation.\"}, {\"name\": \"is_provisional\", \"type\": \"BOOLEAN\", \"description\": \"Whether this is a separately provided provisional value.\"}]",
+        "vgi.title": "Read BoE publication history"
+      },
+      null,
+      [
+        "series_codes",
+        "updates_only",
+        "end_date",
+        "start_date",
+        "max_rows",
+        "include_provisional",
+        "updated_since"
+      ],
+      [
+        "VARCHAR[]",
+        "BOOLEAN",
+        "VARCHAR",
+        "VARCHAR",
+        "BIGINT",
+        "BOOLEAN",
+        "VARCHAR"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22599,
+      [
+        "SELECT period, published_at, value FROM boe.main.revisions(['LPMAUZI'], start_date := '2024-01-01', end_date := '2024-03-31', updated_since := '2024-01-01') ORDER BY period, published_at"
+      ],
+      null,
+      []
+    ],
+    [
+      "boe",
+      "22592",
+      "main",
+      "series",
+      null,
+      "table",
+      "Retrieve titles, frequencies, categories, notes and definition links for selected codes within a required date window. Metadata is taken from the same XML download as observations; narrow dates reduce download size. series_codes is positional; dates and controls are named.",
+      null,
+      {
+        "vgi.category": "api",
+        "vgi.doc_llm": "Retrieve titles, frequencies, categories, notes and definition links for selected codes within a required date window. Metadata is taken from the same XML download as observations; narrow dates reduce download size. series_codes is positional; dates and controls are named. Returns typed columns series_code, title, description, frequency, frequency_name, unit_descriptor, first_observation, last_observation, categories_json, metadata_json. The public upstream API needs no key. Amounts retain source scales; original source strings remain available in JSON. NULL arguments are rejected. Missing optional response fields return NULL. Upstream errors fail the query; SQL WHERE filters are local.",
+        "vgi.doc_md": "## series\n\nRetrieve titles, frequencies, categories, notes and definition links for selected codes within a required date window. Metadata is taken from the same XML download as observations; narrow dates reduce download size. series_codes is positional; dates and controls are named. Returns typed columns series_code, title, description, frequency, frequency_name, unit_descriptor, first_observation, last_observation, categories_json, metadata_json. The public upstream API needs no key. Amounts retain source scales; original source strings remain available in JSON. NULL arguments are rejected. Missing optional response fields return NULL. Upstream errors fail the query; SQL WHERE filters are local.",
+        "vgi.example_queries": "[{\"description\": \"Inspect BoE series metadata\", \"sql\": \"SELECT series_code, title, frequency FROM boe.main.series(['IUDBEDR'], start_date := '2024-01-02', end_date := '2024-01-05') ORDER BY series_code\"}]",
+        "vgi.keywords": "[\"boe\", \"economics\", \"time series\", \"series\"]",
+        "vgi.result_columns_schema": "[{\"name\": \"series_code\", \"type\": \"VARCHAR\", \"description\": \"BoE series identifier.\"}, {\"name\": \"title\", \"type\": \"VARCHAR\", \"description\": \"Official series description.\"}, {\"name\": \"description\", \"type\": \"VARCHAR\", \"description\": \"Concatenated source category descriptions.\"}, {\"name\": \"frequency\", \"type\": \"VARCHAR\", \"description\": \"Source frequency code.\"}, {\"name\": \"frequency_name\", \"type\": \"VARCHAR\", \"description\": \"Source frequency label.\"}, {\"name\": \"unit_descriptor\", \"type\": \"VARCHAR\", \"description\": \"OUTPUT IN category when provided; consult metadata for scale and conventions.\"}, {\"name\": \"first_observation\", \"type\": \"VARCHAR\", \"description\": \"First recorded source period.\"}, {\"name\": \"last_observation\", \"type\": \"VARCHAR\", \"description\": \"Last recorded source period.\"}, {\"name\": \"categories_json\", \"type\": \"VARCHAR\", \"description\": \"All source categories, codes and labels.\"}, {\"name\": \"metadata_json\", \"type\": \"VARCHAR\", \"description\": \"Source metadata hierarchy, including notes and definition links.\"}]",
+        "vgi.title": "Inspect BoE series metadata"
+      },
+      null,
+      [
+        "series_codes",
+        "updates_only",
+        "end_date",
+        "start_date",
+        "max_rows",
+        "include_provisional",
+        "updated_since"
+      ],
+      [
+        "VARCHAR[]",
+        "BOOLEAN",
+        "VARCHAR",
+        "VARCHAR",
+        "BIGINT",
+        "BOOLEAN",
+        "VARCHAR"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22600,
+      [
+        "SELECT series_code, title, frequency FROM boe.main.series(['IUDBEDR'], start_date := '2024-01-02', end_date := '2024-01-05') ORDER BY series_code"
+      ],
+      null,
+      []
+    ]
+  ]
+}
