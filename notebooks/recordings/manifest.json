@@ -1,0 +1,92 @@
+{
+  "source": "Bank of England Interactive Database",
+  "series": "IUDBEDR",
+  "license": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+  "terms": "https://www.bankofengland.co.uk/legal#bank-of-england-database",
+  "records": {
+    "2023-anchor": {
+      "file": "IUDBEDR-2023-anchor.xml",
+      "url": "https://www.bankofengland.co.uk/boeapps/database/_iadb-fromshowcolumns.asp?CodeVer=new&xml.x=yes&Datefrom=01%2FDec%2F2022&Dateto=31%2FDec%2F2022&SeriesCodes=IUDBEDR&VPD=N&VFD=Y&VUD=A",
+      "request_query": {
+        "CodeVer": "new",
+        "xml.x": "yes",
+        "Datefrom": "01/Dec/2022",
+        "Dateto": "31/Dec/2022",
+        "SeriesCodes": "IUDBEDR",
+        "VPD": "N",
+        "VFD": "Y",
+        "VUD": "A"
+      },
+      "retrieved_at_utc": "2026-11-14T05:50:45.799492+00:00",
+      "http_status": 200,
+      "content_type": "text/xml",
+      "sha256": "8a08a88abfcaf3b46c3ab34b14615e04511eaf62c076c1b619bb0665ce0dd73b",
+      "bytes": 3793,
+      "fetch_start": "2022-12-01",
+      "fetch_end": "2022-12-31"
+    },
+    "2023-year": {
+      "file": "IUDBEDR-2023-year.xml",
+      "url": "https://www.bankofengland.co.uk/boeapps/database/_iadb-fromshowcolumns.asp?CodeVer=new&xml.x=yes&Datefrom=01%2FJan%2F2023&Dateto=31%2FDec%2F2023&SeriesCodes=IUDBEDR&VPD=N&VFD=Y&VUD=A",
+      "request_query": {
+        "CodeVer": "new",
+        "xml.x": "yes",
+        "Datefrom": "01/Jan/2023",
+        "Dateto": "31/Dec/2023",
+        "SeriesCodes": "IUDBEDR",
+        "VPD": "N",
+        "VFD": "Y",
+        "VUD": "A"
+      },
+      "retrieved_at_utc": "2026-11-14T05:50:47.268352+00:00",
+      "http_status": 200,
+      "content_type": "text/xml",
+      "sha256": "f4aeb2f032fc45183a3b172fbc6ff60697b1be353c8c6bc374c5638378077a11",
+      "bytes": 32693,
+      "fetch_start": "2023-01-01",
+      "fetch_end": "2023-12-31"
+    },
+    "2024-anchor": {
+      "file": "IUDBEDR-2024-anchor.xml",
+      "url": "https://www.bankofengland.co.uk/boeapps/database/_iadb-fromshowcolumns.asp?CodeVer=new&xml.x=yes&Datefrom=01%2FDec%2F2023&Dateto=31%2FDec%2F2023&SeriesCodes=IUDBEDR&VPD=N&VFD=Y&VUD=A",
+      "request_query": {
+        "CodeVer": "new",
+        "xml.x": "yes",
+        "Datefrom": "01/Dec/2023",
+        "Dateto": "31/Dec/2023",
+        "SeriesCodes": "IUDBEDR",
+        "VPD": "N",
+        "VFD": "Y",
+        "VUD": "A"
+      },
+      "retrieved_at_utc": "2026-11-14T05:50:48.386094+00:00",
+      "http_status": 200,
+      "content_type": "text/xml",
+      "sha256": "b661a5c44bbbd78787cd43046e574734a00cec9cec9d14f71cd79c7673e59671",
+      "bytes": 3707,
+      "fetch_start": "2023-12-01",
+      "fetch_end": "2023-12-31"
+    },
+    "2024-year": {
+      "file": "IUDBEDR-2024-year.xml",
+      "url": "https://www.bankofengland.co.uk/boeapps/database/_iadb-fromshowcolumns.asp?CodeVer=new&xml.x=yes&Datefrom=01%2FJan%2F2024&Dateto=31%2FDec%2F2024&SeriesCodes=IUDBEDR&VPD=N&VFD=Y&VUD=A",
+      "request_query": {
+        "CodeVer": "new",
+        "xml.x": "yes",
+        "Datefrom": "01/Jan/2024",
+        "Dateto": "31/Dec/2024",
+        "SeriesCodes": "IUDBEDR",
+        "VPD": "N",
+        "VFD": "Y",
+        "VUD": "A"
+      },
+      "retrieved_at_utc": "2026-11-14T05:50:49.521281+00:00",
+      "http_status": 200,
+      "content_type": "text/xml",
+      "sha256": "87086506f855b4bc479a88ad50d7f7fed25c17082cbbfab7dd63931d20c72bb4",
+      "bytes": 33110,
+      "fetch_start": "2024-01-01",
+      "fetch_end": "2024-12-31"
+    }
+  }
+}

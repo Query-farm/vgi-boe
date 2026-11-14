@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<Envelope xmlns="http://www.gesmes.org/xml/2002-08-01">
+
+ 				<Cube xmlns="https://web.prod.iadb.ext.az.cloud.bankofengland.co.uk/website/agg_series" SCODE="IUDBEDR" DESC="Official Bank Rate" COUNTRY="" CONCAT="Official Bank Rate ">
+						<Cube FREQ_NAME="Daily" FREQ_CODE="D" FREQ_ORD="1"/><SERIES_COM>Prior to May 2012 the Official Bank rate was published to two decimal places but has since been changed to four decimal places for consistency.</SERIES_COM><SERIES_COM>On the 16th September 1992, the UK leaves the European Exchange Rate Mechanism.  The minimum lending rate was raised to 12%, and planned to be raised to 15% (with effect from 17th September 1992; but never implemented). Please see:
+http://www.bankofengland.co.uk/archive/Documents/historicpubs/qb/1992/qb92q4382398.pdf for further explanation of changes implement to the minimum lending rate on &amp;quot;Black Wednesday&amp;quot;.</SERIES_COM><Cube SERIES_DEF="notes and definitions for Wholesale:Bank of England base rate" DEF_LOC="http://www.bankofengland.co.uk/statistics/pages/iadb/notesiadb/wholesale_baserate.aspx"/>
+						<Cube CAT_NAME="INSTRUMENTS" CAT_VAL="RBASER" VAL_DESC="Official Bank Rate" CAT_ORD="7"/>
+					<Cube FIRST_OBS="1975-01-02" LAST_OBS="2026-11-12"/>
+										<Cube TIME="2022-12-01" OBS_VALUE="3" OBS_CONF="N"  LAST_UPDATED="2022-12-02 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-02" OBS_VALUE="3" OBS_CONF="N"  LAST_UPDATED="2022-12-05 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-05" OBS_VALUE="3" OBS_CONF="N"  LAST_UPDATED="2022-12-06 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-06" OBS_VALUE="3" OBS_CONF="N"  LAST_UPDATED="2022-12-07 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-07" OBS_VALUE="3" OBS_CONF="N"  LAST_UPDATED="2022-12-08 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-08" OBS_VALUE="3" OBS_CONF="N"  LAST_UPDATED="2022-12-09 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-09" OBS_VALUE="3" OBS_CONF="N"  LAST_UPDATED="2022-12-12 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-12" OBS_VALUE="3" OBS_CONF="N"  LAST_UPDATED="2022-12-13 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-13" OBS_VALUE="3" OBS_CONF="N"  LAST_UPDATED="2022-12-14 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-14" OBS_VALUE="3" OBS_CONF="N"  LAST_UPDATED="2022-12-15 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-15" OBS_VALUE="3.5" OBS_CONF="N"  LAST_UPDATED="2022-12-15 12:00:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-16" OBS_VALUE="3.5" OBS_CONF="N"  LAST_UPDATED="2022-12-19 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-19" OBS_VALUE="3.5" OBS_CONF="N"  LAST_UPDATED="2022-12-20 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-20" OBS_VALUE="3.5" OBS_CONF="N"  LAST_UPDATED="2022-12-21 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-21" OBS_VALUE="3.5" OBS_CONF="N"  LAST_UPDATED="2022-12-22 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-22" OBS_VALUE="3.5" OBS_CONF="N"  LAST_UPDATED="2022-12-23 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-23" OBS_VALUE="3.5" OBS_CONF="N"  LAST_UPDATED="2022-12-29 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-28" OBS_VALUE="3.5" OBS_CONF="N"  LAST_UPDATED="2022-12-29 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-29" OBS_VALUE="3.5" OBS_CONF="N"  LAST_UPDATED="2022-12-30 09:30:00">
+								</Cube>
+								
+										<Cube TIME="2022-12-30" OBS_VALUE="3.5" OBS_CONF="N"  LAST_UPDATED="2023-01-03 12:15:26">
+								</Cube>
+								</Cube>
+</Envelope>

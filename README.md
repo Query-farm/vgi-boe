@@ -3,6 +3,11 @@
 Python VGI worker for Bank of England statistics. It exposes five typed SQL
 functions with discovery metadata, original source values and HTTP bearer authentication.
 
+## Executed notebooks
+
+[Reconcile a year of Bank Rate changes](notebooks/README.md) uses official XML
+recordings through the real worker, with exact SQL checks and a live option.
+
 ## Run locally
 
 Requires Python 3.13+ and [uv](https://docs.astral.sh/uv/).
