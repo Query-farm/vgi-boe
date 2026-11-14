@@ -55,6 +55,19 @@ CATALOG_TAGS["vgi.agent_test_tasks"] = json.dumps(
         }
         for fn in FUNCTIONS
     ]
+    + [
+        {
+            # Composed task: revision history (revisions) aligned with the policy rate (observations).
+            "name": "m4_revision_counts_with_bank_rate",
+            "prompt": (
+                "For each Bank of England LPMAUZI (monthly M4 change) period from 2024-01-01 to 2024-03-31, "
+                "using a revision baseline of 2024-01-01, return period (VARCHAR), releases (BIGINT: the number "
+                "of revision rows published for that period), current_value (DOUBLE: the value of the current "
+                "release) and bank_rate (DOUBLE: the latest non-NULL Official Bank Rate, series IUDBEDR, observed "
+                "on or before the period's observation_date). Order by period."
+            ),
+        }
+    ]
 )
 
 

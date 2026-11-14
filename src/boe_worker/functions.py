@@ -8,6 +8,7 @@ from typing import Annotated, Any, ClassVar
 import pyarrow as pa
 from vgi.arguments import Arg
 from vgi.invocation import BindResponse
+from vgi.metadata import FunctionExample
 from vgi.table_function import BindParams, OutputCollector, ProcessParams, TableFunctionGenerator, init_single_worker
 from vgi_rpc import ArrowSerializableDataclass
 
@@ -67,6 +68,27 @@ REVISIONS = pa.schema(
         column("is_current", pa.bool_(), "Whether the release matches the returned current observation."),
         column("is_provisional", pa.bool_(), "Whether this is a separately provided provisional value."),
     ]
+)
+
+
+# Composed example: real-time M4 revisions (revisions) beside the policy rate (observations).
+M4_REVISIONS_VS_BANK_RATE_SQL = (
+    "WITH m4 AS (SELECT observation_date AS month_end, arg_min(value, published_at) AS first_published, "
+    "max(value) FILTER (WHERE is_current) AS current_value FROM boe.main.revisions(['LPMAUZI'], "
+    "start_date := '2024-01-01', end_date := '2024-12-31', updated_since := '2024-01-01') "
+    "GROUP BY observation_date), rate AS (SELECT date_trunc('month', observation_date) AS month_start, "
+    "round(avg(value), 3) AS avg_bank_rate FROM boe.main.observations(['IUDBEDR'], "
+    "start_date := '2024-01-01', end_date := '2024-12-31') GROUP BY ALL) "
+    "SELECT strftime(m.month_end, '%Y-%m') AS month, r.avg_bank_rate, m.first_published, m.current_value, "
+    "m.current_value - m.first_published AS total_revision FROM m4 AS m JOIN rate AS r "
+    "ON r.month_start = date_trunc('month', m.month_end) ORDER BY month"
+)
+M4_REVISIONS_VS_BANK_RATE = FunctionExample(
+    sql=M4_REVISIONS_VS_BANK_RATE_SQL,
+    description=(
+        "Compare each 2024 month's first-published and current M4 change (LPMAUZI revisions) with "
+        "that month's average Bank Rate (IUDBEDR observations), showing how much each estimate was revised"
+    ),
 )
 
 
@@ -313,6 +335,7 @@ class Revisions(BoeFunction[DataArgs]):
             "period, published_at"
         ),
     )
+    Meta.examples = [*Meta.examples, M4_REVISIONS_VS_BANK_RATE]
 
     @classmethod
     def fetch(cls, args: DataArgs) -> list[dict[str, Any]]:

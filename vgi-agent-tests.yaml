@@ -19,6 +19,10 @@
     {
       "name": "new_series",
       "reference_sql": "SELECT series_code, title FROM boe.main.new_series(start_date := '2024-01-01', end_date := '2024-01-31') ORDER BY series_code"
+    },
+    {
+      "name": "m4_revision_counts_with_bank_rate",
+      "reference_sql": "WITH m4 AS (SELECT period, observation_date, count(*) AS releases, max(value) FILTER (WHERE is_current) AS current_value FROM boe.main.revisions(['LPMAUZI'], start_date := '2024-01-01', end_date := '2024-03-31', updated_since := '2024-01-01') GROUP BY ALL), rate AS (SELECT observation_date, value FROM boe.main.observations(['IUDBEDR'], start_date := '2023-12-01', end_date := '2024-03-31') WHERE value IS NOT NULL) SELECT m.period, m.releases, m.current_value, r.value AS bank_rate FROM m4 AS m ASOF LEFT JOIN rate AS r ON m.observation_date >= r.observation_date ORDER BY m.period"
     }
   ]
 }

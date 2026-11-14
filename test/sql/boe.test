@@ -95,5 +95,21 @@ SELECT * FROM boe.main.observations(['IUDBEDR','iudbedr'], start_date := '2024-0
 ----
 must not repeat
 
+# composed: M4 revision history beside the monthly average Bank Rate (fixture rows share one month)
+query TRRRR rowsort
+WITH m4 AS (SELECT observation_date AS month_end, arg_min(value, published_at) AS first_published, max(value) FILTER (WHERE is_current) AS current_value FROM boe.main.revisions(['LPMAUZI'], start_date := '2024-01-01', end_date := '2024-12-31', updated_since := '2024-01-01') GROUP BY observation_date), rate AS (SELECT date_trunc('month', observation_date) AS month_start, round(avg(value), 3) AS avg_bank_rate FROM boe.main.observations(['IUDBEDR'], start_date := '2024-01-01', end_date := '2024-12-31') GROUP BY ALL) SELECT strftime(m.month_end, '%Y-%m') AS month, r.avg_bank_rate, m.first_published, m.current_value, m.current_value - m.first_published AS total_revision FROM m4 AS m JOIN rate AS r ON r.month_start = date_trunc('month', m.month_end) ORDER BY month;
+----
+2024-01	2.625	2.0	2.5	0.5
+2024-01	2.625	2.0	2.75	0.75
+2024-01	2.625	2.0	NULL	NULL
+
+# composed: revision counts with the as-of Bank Rate (agent task grader)
+query TIRR
+WITH m4 AS (SELECT period, observation_date, count(*) AS releases, max(value) FILTER (WHERE is_current) AS current_value FROM boe.main.revisions(['LPMAUZI'], start_date := '2024-01-01', end_date := '2024-03-31', updated_since := '2024-01-01') GROUP BY ALL), rate AS (SELECT observation_date, value FROM boe.main.observations(['IUDBEDR'], start_date := '2023-12-01', end_date := '2024-03-31') WHERE value IS NOT NULL) SELECT m.period, m.releases, m.current_value, r.value AS bank_rate FROM m4 AS m ASOF LEFT JOIN rate AS r ON m.observation_date >= r.observation_date ORDER BY m.period;
+----
+2024-01-02	2	2.5	2.5
+2024-01-03	2	NULL	2.5
+2024-01-04	2	2.75	2.75
+
 statement ok
 DETACH boe;
