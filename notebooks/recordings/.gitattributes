@@ -1,0 +1,2 @@
+# Preserve official response bytes and line endings on every platform.
+*.xml -text -diff
