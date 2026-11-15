@@ -72,6 +72,11 @@ CATALOG_DOC_LLM = (
     "function arguments for source filtering; SQL WHERE filters are local. HTTP worker "
     "access can require a bearer token."
 )
+CATALOG_SOURCES_MD = (
+    "\n\n## Sources and references\n\n"
+    "- [Bank of England Database](https://www.bankofengland.co.uk/boeapps/database/)\n"
+    "- [Database help (codes and download parameters)](https://www.bankofengland.co.uk/boeapps/database/help.asp)"
+)
 CATALOG_DOC_MD = (
     "# vgi-boe\n\n"
     + CATALOG_DOC_LLM
@@ -79,7 +84,9 @@ CATALOG_DOC_MD = (
         "\n\nQueries use bounded HTTP responses and retries. Credentials stay out of "
         "continuation state. See README.md for deployment and operational limits."
     )
+    + CATALOG_SOURCES_MD
 )
+SCHEMA_COMMENT = "Bank of England Database series as table functions: series discovery, metadata and observations."
 SCHEMA_DOC_LLM = CATALOG_DOC_LLM
 SCHEMA_DOC_MD = (
     "## main\n\n"
