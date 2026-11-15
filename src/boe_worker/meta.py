@@ -115,13 +115,10 @@ CATALOG_TAGS = {
     "vgi.executable_examples": json.dumps(
         [
             {
-                "name": "discover_datasets",
-                "description": "Discover available functions without credentials or API requests",
-                "sql": (
-                    "SELECT function_name FROM duckdb_functions() WHERE database_name = 'boe' AND "
-                    "function_name = 'datasets' ORDER BY function_name"
-                ),
-                "expected_result": [{"function_name": "datasets"}],
+                "name": "bank_rate_series",
+                "description": "Find the Official Bank Rate series code in the curated list (no network request)",
+                "sql": "SELECT series_code, title FROM boe.main.datasets(query := 'bank rate') ORDER BY series_code",
+                "expected_result": [{"series_code": "IUDBEDR", "title": "Official Bank Rate"}],
             }
         ]
     ),
