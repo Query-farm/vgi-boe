@@ -58,6 +58,13 @@ def column(name: str, type_: pa.DataType, comment: str, *, nullable: bool = True
     return pa.field(name, type_, nullable=nullable, metadata={b"comment": comment.encode()})
 
 
+#: The catalog COMMENT: one plain-text sentence directories show as the one-line description.
+CATALOG_COMMENT = (
+    "Bank of England statistics as SQL tables: interest rates, money, credit and other time "
+    "series from the Bank of England Database, with series metadata and published revision "
+    "history. No API key needed."
+)
+
 CATALOG_DOC_LLM = (
     "Discover Bank of England statistical series and retrieve observations with original "
     "periods, units and source metadata. The upstream public data service needs no API "
