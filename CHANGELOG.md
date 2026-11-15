@@ -9,6 +9,9 @@
   `vgi.doc_md` adds detail instead of repeating it (VGI102).
 - The catalog's executable example now calls the worker instead of only
   querying DuckDB's own catalog (`duckdb_functions()`): `boe.main.datasets(query := 'bank rate')` finds the Official Bank Rate series code.
+- The `new_series` example now asks for September 2024, a window the live service reports
+  additions for (the Bulgarian lev and Romanian leu spot rates); the earlier January 2024
+  window returned no rows (VGI902).
 
 ## 0.1.1 (2026-11-14)
 

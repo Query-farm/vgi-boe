@@ -349,7 +349,7 @@ class NewSeries(BoeFunction[PeriodArgs]):
     FIXED_SCHEMA = SERIES
     Meta = function_meta(
         "new_series",
-        "Discover newly added BoE series",
+        "Discover the BoE series added in September 2024",
         (
             "Use the official SeriesCodes=all mode to list series added within the required "
             "start_date/end_date window. This discovers additions, not every existing series and "
@@ -357,8 +357,8 @@ class NewSeries(BoeFunction[PeriodArgs]):
         ),
         SERIES,
         (
-            "SELECT series_code, title FROM boe.main.new_series(start_date := '2024-01-01', "
-            "end_date := '2024-01-31') ORDER BY series_code"
+            "SELECT series_code, title FROM boe.main.new_series(start_date := '2024-09-01', "
+            "end_date := '2024-09-30') ORDER BY series_code"
         ),
     )
 
