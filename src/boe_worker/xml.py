@@ -14,7 +14,7 @@ def parse_xml(raw: bytes) -> Element:
     """Parse source bytes while preserving their declared character encoding."""
     try:
         root = fromstring(raw, forbid_dtd=True, forbid_entities=True, forbid_external=True)
-    except (ParseError, DefusedXmlException, ValueError):
+    except ParseError, DefusedXmlException, ValueError:
         raise ApiError("API returned invalid or unsafe XML") from None
     if root is None:
         raise ApiError("API returned empty XML")
